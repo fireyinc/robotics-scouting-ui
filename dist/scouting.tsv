@@ -1,0 +1,120 @@
+Timestamp	Your Name (For verification reasons)	Team Number You Are Scouting	Match #	Driver Station	Autonomous Starting Position	Tarmac Taxi Points for team	Autonomous Balls Shot	Autonomous Balls Made	Primary Match Strategy	Tele-op Cargo Shot Lower	Tele-op Cargo Made Lower	Tele-op Cargo Shot Upper	Tele-op Cargo Made Upper	Average Cycle Time (In Seconds)	Shot Location	Offensive Rating (1-10)	Opponent Cargo Shot	Opponent Cargo Made	Defensive Rating (1-10) 	Climb Attempted	Climb Reached	Approximate Time Took To Climb (In Seconds)	Robot was broken/nonfunctional	Total Penalties Committed	Total Penalties Drawn	Total Alliance Score (Including penalties)	Did the robot have any problems (Broken intake, brown outs, etc.)	Cooperation Level w/ Alliance Partners (1-10)	Overall Notes About Robot/Team	Total Opponent Alliance Score (Including penalties)	Cargo RP Achieved	Climber RP Achieved
+9/27/2022 10:15:19	Ibrahim Abbasi	1885	7	Red 3	Right Tarmac Right Side	2	1	1	Offense	0	0	9	8	8	Against Fender	6				No Climb	No Climb	0	No	0	0	89		7		48	Yes	Yes
+9/28/2022 20:58:19	Ibrahim Abbasi	1885	14	Blue 1	Right Tarmac Right Side	2	2	2	Offense	0	0	10	10	7	Against Fender	8				Traversal Bar	Traversal Bar	28	No	0	0	86		8		79	Yes	No
+9/28/2022 21:08:25	Ibrahim Abbasi	1885	21	Red 3	Right Tarmac Right Side	2	1	0	Offense	0	0	10	4	12	Against Fender	4				Traversal Bar	Traversal Bar	22	No	0	0	59		5		55	No	No
+9/28/2022 21:15:18	Ibrahim Abbasi	1885	32	Blue 3	Right Tarmac Right Side	2	1	1	Offense	0	0	12	11	6	Against Fender	8				Traversal Bar	Traversal Bar	28	No	0	0	86		7		50	Yes	Yes
+9/28/2022 21:21:15	Ibrahim Abbasi	1885	45	Red 2	Right Tarmac Right Side	2	1	1	Defense								3	2	8	Traversal Bar	Traversal Bar	20	Yes	0	0	66	Broken Intake	7		92	No	Yes
+9/28/2022 21:32:53	Ibrahim Abbasi	1885	58	Blue 1	Right Tarmac Right Side	2	2	2	Offense	0	0	6	2	15	Against Fender	3				Traversal Bar	Traversal Bar	20	No	0	0	83		5		63	Yes	No
+9/28/2022 21:38:08	Ibrahim Abbasi	1885	70	Blue 3	Right Tarmac Right Side	2	2	2	Offense	0	0	14	8	6	Against Fender	7				Traversal Bar	Traversal Bar	20	No	1	0	107		8		91	Yes	Yes
+9/28/2022 21:42:49	Ibrahim Abbasi	1885	78	Red 1	Right Tarmac Right Side	2	2	2	Offense	0	0	12	9	5	Against Fender	9				Traversal Bar	Traversal Bar	18	No	0	1	113		8		39	Yes	Yes
+9/28/2022 21:49:31	Ibrahim Abbasi	1885	86	Blue 1	Right Tarmac Right Side	2	2	2	Offense	0	0	11	10	6	Against Fender	8				Traversal Bar	Traversal Bar	21	No	0	0	76		9		62	Yes	Yes
+9/28/2022 21:55:26	Ibrahim Abbasi	1885	94	Red 2	Right Tarmac Right Side	2	1	1	Offense	0	0	13	11	5	Against Fender	10				Traversal Bar	Traversal Bar	16	No	0	0	69		8		59	No	No
+9/28/2022 21:58:39	Ibrahim Abbasi	1885	102	Blue 2	Right Tarmac Right Side	2	2	2	Offense	0	0	9	7	7	Against Fender	8				Traversal Bar	Traversal Bar	22	No	0	0	92		7		80	Yes	Yes
+9/28/2022 22:03:33	Ibrahim Abbasi	1885	111	Blue 2	Right Tarmac Right Side	2	2	2	Offense	0	0	13	7	10	Against Fender	6				Traversal Bar	Traversal Bar	15	No	0	0	85		7		65	Yes	No
+9/29/2022 9:36:39	Ibrahim Abbasi	4099	3	Blue 2	Left Tarmac Left Side	2	2	2	Offense	0	0	12	8	9	Against Fender	7				Traversal Bar	Traversal Bar	18	No	0	0	75		6		34	Yes	Yes
+9/29/2022 9:41:38	Ibrahim Abbasi	4099	16	Red 3	Left Tarmac Left Side	2	3	3	Offense	1	1	12	12	8	Against Fender	9				Traversal Bar	Traversal Bar	23	No	0	0	79		8		100	Yes	Yes
+9/29/2022 9:47:28	Ibrahim Abbasi	4099	25	Blue 1	Left Tarmac Left Side	2	4	4	Offense	0	0	11	9	8	Against Fender	6				Traversal Bar	High Bar	18	No	1	0	77		6		81	Yes	Yes
+9/29/2022 9:54:11	Ibrahim Abbasi	4099	38	Red 3	Left Tarmac Left Side	2	4	4	Offense	0	0	11	7	8	Against Fender	7				Traversal Bar	Mid Bar	12	No	0	0	69		6		72	Yes	No
+9/29/2022 9:59:13	Ibrahim Abbasi	4099	48	Red 3	Left Tarmac Left Side	2	5	2	Offense	0	0	9	8	7	Against Fender	7				Traversal Bar	High Bar	18	No	0	0	73		6		73	Yes	No
+9/29/2022 10:08:34	Ibrahim Abbasi	4099	59	Blue 1	Right Tarmac Right Side	2	2	2	Offense	0	0	9	8	5	Against Fender	8				Mid Bar	Mid Bar	35	No	0	0	98		8		82	Yes	Yes
+9/29/2022 10:12:58	Ibrahim Abbasi	4099	70	Red 2	Left Tarmac Left Side	2	2	1	Offense	0	0	14	10	12	Against Fender	6				Mid Bar	Mid Bar	15	No	0	0	91		6		107	Yes	Yes
+9/29/2022 10:18:23	Ibrahim Abbasi	4099	78	Red 2	Left Tarmac Left Side	0	0	0	Offense	0	0	12	10	9	Against Fender	7				Traversal Bar	High Bar	22	No	0	0	113	Auto didn't move	4		39	Yes	Yes
+9/29/2022 10:22:51	Ibrahim Abbasi	4099	89	Blue 2	Left Tarmac Left Side	2	2	2	Offense	0	0	9	6	15	Against Fender	5				Traversal Bar	High Bar	28	No	2	0	88		6		76	Yes	Yes
+9/29/2022 12:01:16	Ibrahim Abbasi	4099	99	Blue 3	Right Tarmac Right Side	2	2	1	Offense	0	0	14	8	9	Against Fender	7				Mid Bar	No Climb	5	No	0	0	86		5		38	Yes	Yes
+9/29/2022 12:06:27	Ibrahim Abbasi	4099	106	Red 1	Left Tarmac Left Side	2	4	4	Offense	1	1	12	9	7	Against Fender	7				Mid Bar	Mid Bar	15	No	0	0	83		6		68	Yes	Yes
+9/29/2022 12:12:18	Ibrahim Abbasi	4099	119	Blue 1	Left Tarmac Left Side	2	5	4	Offense	0	0	18	12	6	Against Fender	9				Traversal Bar	High Bar	18	No	0	0	88		7		87	Yes	Yes
+10/6/2022 10:00:23	Ibrahim Abbasi	401	5	Blue 3	Left Tarmac Left Side	2	3	3	Offense	0	0	11	9	10	Against Fender, Tarmac	7				Traversal Bar	Traversal Bar	37	No	0	0	101		5		45	Yes	Yes
+10/6/2022 10:05:09	Ibrahim Abbasi	401	12	Blue 2	Left Tarmac Left Side	2	3	3	Offense	0	0	8	5	12	Against Fender, Tarmac	5				Traversal Bar	Mid Bar	35	No	0	0	69		6		50	No	Yes
+10/6/2022 10:09:33	Ibrahim Abbasi	401	27	Red 1	Left Tarmac Left Side	2	4	4	Offense	0	0	9	8	7	Against Fender, Tarmac	7				Mid Bar	Mid Bar	25	No	0	0	86	Disconnected for half of the last minute	6		68	Yes	Yes
+10/6/2022 10:14:23	Ibrahim Abbasi	401	35	Blue 3	Left Tarmac Left Side	2	4	4	Offense	0	0	20	16	4	Against Fender, Tarmac	9				No Climb	No Climb	0	No	0	0	81		8		80	Yes	No
+10/6/2022 10:21:03	Ibrahim Abbasi	401	43	Blue 2	Left Tarmac Left Side	2	5	5	Offense	0	0	9	6	10	Against Fender, Tarmac	6				Mid Bar	Mid Bar	20	No	0	0	79		6		62	Yes	Yes
+10/6/2022 10:25:34	Ibrahim Abbasi	401	51	Blue 2	Left Tarmac Left Side	2	5	5	Offense	0	0	2	2	8	Against Fender, Tarmac	5				Mid Bar	Mid Bar	30	Yes	0	0	59		5		52	No	Yes
+10/8/2022 17:19:17	Ibrahim Abbasi	401	61	Blue 1	Left Tarmac Left Side	2	4	4	Offense	0	0	12	11	6	Against Fender, Tarmac, Shield Generator	8				Traversal Bar	High Bar	31	No	0	0	94		7		74	Yes	Yes
+10/8/2022 17:23:55	Ibrahim Abbasi	401	74	Red 2	Left Tarmac Left Side	0	0	0	Offense	0	0	8	5	12	Tarmac, Shield Generator	4				Traversal Bar	Mid Bar	41	No	0	0	44		5	Swerve module seems to be acting up and autonomous not run	115	No	No
+10/8/2022 17:32:05	Ibrahim Abbasi	401	88	Red 1	Left Tarmac Left Side	2	2	1	Offense	0	0	12	12	7	Tarmac	8				Mid Bar	Mid Bar	30	No	0	0	63	Turret spin out for last 45 seconds roughly	7		57	No	Yes
+10/8/2022 17:43:55	Ibrahim Abbasi	401	98	Red 1	Right Tarmac Left Side	2	2	2	Offense	0	0	14	7	5	Tarmac	7				Mid Bar	Mid Bar	43	No	0	0	98	Turret spin out for last minute roughly	7		58	Yes	No
+10/8/2022 17:47:42	Ibrahim Abbasi	401	110	Red 3	Left Tarmac Left Side	2	5	5	Offense	0	0	12	10	8	Tarmac	7				Mid Bar	Mid Bar	45	No	0	0	64		7		45	Yes	No
+10/8/2022 17:52:27	Ibrahim Abbasi	401	117	Red 3	Left Tarmac Left Side	2	5	4	Offense	0	0	13	8	5	Tarmac	9				Traversal Bar	High Bar	60	No	0	0	107	Turret not locking properly	7		65	Yes	Yes
+10/9/2022 18:34:59	Ibrahim Abbasi	1731	6	Red 2	Left Tarmac Left Side	2	3	1	Offense	0	0	8	7	8	Tarmac, Shield Generator	7				Traversal Bar	Traversal Bar	60	No	0	0	77	Seemed to have broken swerve or something with around 1:15 left	7		70	Yes	Yes
+10/9/2022 18:41:23	Ibrahim Abbasi	1731	15	Blue 2	Right Tarmac Right Side	2	3	1	Offense	0	0	15	5	6	Against Fender, Tarmac, Shield Generator	4				Traversal Bar	Traversal Bar	20	No	0	0	68		6		41	Yes	No
+10/9/2022 18:54:16	Ibrahim Abbasi	1731	22	Red 3	Right Tarmac Right Side	2	2	1	Offense	0	0	13	5	8	Tarmac, Shield Generator	4				Traversal Bar	Traversal Bar	20	No	0	0	85		6		79	Yes	Yes
+10/9/2022 19:29:01	Ibrahim Abbasi	1731	37	Red 1	Left Tarmac Right Side	2	3	0	Offense	0	0	17	12	6	Tarmac, Shield Generator	9				Traversal Bar	Traversal Bar	25	No	0	0	84		8		75	Yes	Yes
+10/9/2022 18:54:16	Ibrahim Abbasi	1731	49	Blue 1	Left Tarmac Right Side	2	4	3	Offense	0	0	14	13	6	Tarmac, Shield Generator	9				Traversal Bar	Traversal Bar	18	No	0	0	108		8		32	Yes	Yes
+10/9/2022 19:29:01	Ibrahim Abbasi	1731	58	Red 2	Right Tarmac Right Side	2	3	1	Offense	0	0	11	8	9	Tarmac, Shield Generator	7				Traversal Bar	Traversal Bar	18	No	1	0	63		7		83	Yes	Yes
+10/9/2022 19:45:25	Ibrahim Abbasi	1731	74	Blue 3	Left Tarmac Right Side	2	3	2	Offense	0	0	13	10	7	Tarmac, Shield Generator	8				Traversal Bar	Traversal Bar	21	No	0	1	115		7		44	Yes	Yes
+10/9/2022 19:50:14	Ibrahim Abbasi	1731	87	Red 1	Right Tarmac Right Side	2	2	2	Offense	0	0	14	11	7	Tarmac, Shield Generator	8				Traversal Bar	Traversal Bar	25	No	0	0	131		8		75	Yes	Yes
+10/9/2022 19:57:21	Ibrahim Abbasi	1731	99	Blue 2	Left Tarmac Right Side	2	4	1	Offense	0	0	14	8	8	Tarmac, Shield Generator	7				Traversal Bar	Traversal Bar	17	No	0	0	86		7		38	Yes	Yes
+10/9/2022 20:02:04	Ibrahim Abbasi	1731	106	Blue 3	Left Tarmac Right Side	2	2	1	Offense	0	0	14	8	9	Tarmac, Shield Generator	7				Traversal Bar	Traversal Bar	20	No	0	0	68		7		83	Yes	No
+10/9/2022 20:12:06	Ibrahim Abbasi	1731	113	Blue 1	Left Tarmac Left Side	2	5	4	Offense	0	0	11	0	9	Tarmac, Shield Generator	1				Traversal Bar	Traversal Bar	19	No	0	0	75	Shooter misaligned but they kept shooting	5		60	No	Yes
+10/9/2022 20:16:51	Ibrahim Abbasi	1731	66	Red 3	Left Tarmac Left Side	2	4	2	Offense	0	0	12	8	10	Tarmac, Shield Generator	7				Traversal Bar	Traversal Bar	20		1	0	87		6		88	Yes	No
+10/10/2022 17:00:58	Ibrahim Abbasi	1610	2	Blue 3	Right Tarmac Right Side	2	1	1	Offense	10	10	3	3	6	Against Fender, Tarmac	7				Mid Bar	Mid Bar	23	No	0	0	63		8		89	Yes	No
+10/10/2022 18:19:19	Ibrahim Abbasi	1610	14	Red 3	Right Tarmac Right Side	2	2	2	Offense	2	2	11	8	9	Against Fender, Tarmac	7				Low Bar	Low Bar	10	No	1	0	79		7		86	Yes	Yes
+10/10/2022 18:25:23	Ibrahim Abbasi	1610	22	Blue 3	Right Tarmac Left Side	2	1	1	Offense	0	0	5	2	13	Against Fender, Tarmac	3				Low Bar	Low Bar	8	No	0	0	79		6		85	Yes	Yes
+10/10/2022 18:30:16	Ibrahim Abbasi	1610	31	Blue 3	Right Tarmac Right Side	2	2	1	Offense	5	5	7	3	10	Against Fender, Tarmac	6				Low Bar	Low Bar	10	No	0	0	63		7		74	Yes	Yes
+10/10/2022 19:46:43	Ibrahim Abbasi	1610	41	Red 1	Right Tarmac Right Side	2	2	1	Offense	0	0	10	5	9	Against Fender, Tarmac	6				Mid Bar	Mid Bar	14	No	0	0	78		7		73	Yes	No
+10/10/2022 19:51:46	Ibrahim Abbasi	1610	53	Red 2	Left Tarmac Right Side	2	1	1	Offense	0	0	19	14	6	Against Fender, Tarmac	8				Mid Bar	No Climb	0	No	0	0	84		8		50	Yes	No
+10/10/2022 19:57:39	Ibrahim Abbasi	1610	61	Red 1	Left Tarmac Right Side	2	1	0	Offense	0	0	11	10	8	Against Fender, Tarmac	8				No Climb	No Climb	0	No	1	0	74		7		94	Yes	No
+10/10/2022 20:03:50	Ibrahim Abbasi	1610	72	Red 2	Right Tarmac Right Side	2	2	1	Offense	8	8	9	7	5	Against Fender, Tarmac	9				Low Bar	Low Bar	15	No	0	0	57		7		21	Yes	Yes
+10/10/2022 20:09:14	Ibrahim Abbasi	1610	83	Blue 1	Right Tarmac Right Side	2	2	2	Offense	4	4	14	6	8	Against Fender, Tarmac	6				Low Bar	No Climb	0	No	0	0	68		7		65	Yes	No
+10/10/2022 20:14:32	Ibrahim Abbasi	1610	91	Blue 2	Right Tarmac Left Side	2	1	1	Offense	0	0	13	11	7	Against Fender	8				Low Bar	Low Bar	7	No	0	0	108		8		91	Yes	Yes
+10/10/2022 20:22:19	Ibrahim Abbasi	1610	105	Blue 2	Right Tarmac Left Side	2	1	1	Offense	1	1	7	6	9	Against Fender	7				Low Bar	No Climb	0	No	0	0	116		7		97	Yes	Yes
+10/10/2022 20:26:41	Ibrahim Abbasi	1610	117	Red 1	Right Tarmac Left Side	2	1	1	Offense	2	2	8	6	8	Against Fender	6				Mid Bar	Mid Bar	15	No	0	0	107		5		65	Yes	Yes
+10/10/2022 21:46:48	Ibrahim Abbasi	1629	8	Red 2	Right Tarmac Left Side	2	1	1	Offense	0	0	9	8	10	Against Fender	7				High Bar	High Bar	30	No	0	0	93		6		70	Yes	Yes
+10/11/2022 23:34:26	Ibrahim Abbasi	1629	17	Blue 2	Left Tarmac Left Side	2	2	1	Offense	0	0	8	5	12	Against Fender	5				Traversal Bar	Traversal Bar	30	No	0	0	65		6		51	No	Yes
+10/11/2022 23:39:42	Ibrahim Abbasi	1629	25	Red 2	Right Tarmac Right Side	2	2	2	Offense	0	0	12	9	8	Against Fender	7				Traversal Bar	Traversal Bar	38	No	0	0	81		7		77	Yes	Yes
+10/12/2022 12:17:35	Ibrahim Abbasi	1629	39	Blue 3	Right Tarmac Right Side	2	2	2	Offense	0	0	11	7	9	Against Fender	6				Traversal Bar	Traversal Bar	30	No	0	0	105		7		65	Yes	Yes
+10/12/2022 12:22:14	Ibrahim Abbasi	1629	46	Red 3	Right Tarmac Right Side	2	2	2	Offense	0	0	9	6	12	Against Fender	6				Traversal Bar	High Bar	28	No	0	0	65		7		47	No	Yes
+10/12/2022 12:41:34	Ibrahim Abbasi	1629	53	Red 1	Right Tarmac Right Side	2	2	2	Offense	0	0	11	7	10	Against Fender	7				Traversal Bar	High Bar	28	No	1	0	84		7		50	Yes	No
+10/12/2022 13:06:41	Ibrahim Abbasi	1629	63	Red 1	Left Tarmac Left Side	2	2	2	Offense	0	0	10	7	10	Against Fender	7				Traversal Bar	Traversal Bar	27	No	0	0	76		7		91	No	Yes
+10/12/2022 13:29:00	Ibrahim Abbasi	1629	71	Red 1	Right Tarmac Right Side	2	2	2	Offense	1	1	10	9	8	Against Fender	8				Traversal Bar	High Bar	28	No	0	0	88		7		80	Yes	Yes
+10/12/2022 13:37:47	Ibrahim Abbasi	1629	87	Blue 3	Left Tarmac Left Side	2	2	1	Offense	0	0	11	9	8	Against Fender	7				Traversal Bar	Traversal Bar	39	No	0	0	75		7		131	Yes	Yes
+10/12/2022 13:42:16	Ibrahim Abbasi	1629	94	Blue 2	Right Tarmac Right Side	2	2	2	Defense								6	5	3	Traversal Bar	High Bar	23	Yes	0	1	59		8		69	No	Yes
+10/12/2022 13:46:03	Ibrahim Abbasi	1629	101	Blue 1	Left Tarmac Left Side	2	2	2	Offense	0	0	6	4	15	Against Fender	4				Traversal Bar	Traversal Bar	28	No	0	0	76		7		72	Yes	Yes
+10/12/2022 13:50:19	Ibrahim Abbasi	1629	114	Blue 3	Right Tarmac Right Side	2	2	1	Offense	0	0	11	7	10	Against Fender	7				No Climb	No Climb	0	No	0	0	88		5		78	Yes	No
+10/12/2022 14:14:06	Ibrahim Abbasi	2363	1	Red 3	Left Tarmac Right Side	2	5	4	Offense	0	0	19	15	5	Tarmac, Shield Generator	9				Mid Bar	Mid Bar	10	No	0	0	112		8		63	Yes	Yes
+10/12/2022 14:19:14	Ibrahim Abbasi	2363	16	Blue 3	Left Tarmac Left Side	2	4	2	Offense	0	0	14	11	6	Tarmac, Shield Generator	8				Mid Bar	Mid Bar	13	No	0	0	100		7		79	Yes	Yes
+10/12/2022 14:24:40	Ibrahim Abbasi	2363	28	Red 1	Left Tarmac Right Side	2	5	3	Offense	0	0	6	5	10	Tarmac, Shield Generator	4				Low Bar	No Climb	0	Yes	0	0	64		6	Broken Intake	44	No	No
+10/13/2022 14:46:42	Ibrahim Abbasi	2363	36	Blue 2	Left Tarmac Right Side	2	4	4	Offense	0	0	17	12	7	Tarmac, Shield Generator	8				Mid Bar	Mid Bar	8	No	0	0	96		7		62	Yes	Yes
+10/13/2022 14:51:45	Ibrahim Abbasi	2363	45	Red 1	Left Tarmac Right Side	2	4	3	Offense	0	0	0	0	0		1				No Climb	No Climb	0	Yes	0	0	66		4		92	No	Yes
+10/13/2022 15:16:10	Ibrahim Abbasi	2363	59	Blue 2	Left Tarmac Right Side	2	4	3	Offense	0	0	15	9	10	Tarmac, Shield Generator	7				Mid Bar	Mid Bar	14	No	0	0	98		7		82	Yes	Yes
+10/13/2022 15:23:15	Ibrahim Abbasi	2363	67	Red 3	Left Tarmac Right Side	2	5	4	Offense	1	1	18	14	4	Tarmac, Shield Generator	9				Mid Bar	Mid Bar	8	No	0	0	89		8		69	Yes	No
+10/13/2022 16:07:23	Ibrahim Abbasi	2363	80	Blue 2	Left Tarmac Right Side	2	5	4	Offense	1	1	20	9	6	Tarmac	6				Mid Bar	Mid Bar	6	No	0	0	92		7		61	Yes	No
+10/13/2022 16:12:02	Ibrahim Abbasi	2363	87	Red 3	Left Tarmac Right Side	2	5	4	Offense	0	0	23	18	5	Tarmac, Shield Generator	10				Mid Bar	Mid Bar	7	No	0	0	131		7		75	Yes	Yes
+10/13/2022 16:16:22	Ibrahim Abbasi	2363	96	Red 2	Left Tarmac Right Side	2	5	4	Offense	1	1	18	15	6	Tarmac	9				Mid Bar	Mid Bar	6	No	0	0	98		7		58	Yes	No
+10/13/2022 16:21:23	Ibrahim Abbasi	2363	105	Blue 1	Left Tarmac Right Side	2	6	6	Offense	0	0	14	11	8	Tarmac	8				Mid Bar	Mid Bar	4	No	0	0	116		7		97	Yes	Yes
+10/13/2022 16:27:16	Ibrahim Abbasi	2363	114	Blue 1	Left Tarmac Right Side	2	5	3	Offense	0	0	15	11	6	Tarmac	7				Mid Bar	Mid Bar	8	No	0	1	88		7		78	Yes	No
+10/15/2022 20:28:44	Ibrahim Abbasi	836	1	Red 2	Right Tarmac Right Side	2	2	2	Offense	0	0	14	9	8	Tarmac, Shield Generator	7				High Bar	High Bar	23	No	0	0	112		7		63	Yes	Yes
+10/15/2022 20:33:10	Ibrahim Abbasi	836	11	Blue 1	Left Tarmac Left Side	2	3	3	Offense	1	1	12	8	9	Tarmac, Shield Generator	7				Traversal Bar	High Bar	30	No	0	0	100		7		62	Yes	Yes
+10/22/2022 0:04:28	Ibrahim Abbasi	836	22	Red 2	Left Tarmac Left Side	2	4	4	Offense	0	0	12	10	10	Tarmac, Shield Generator	8				High Bar	High Bar	17	No	0	0	85		7		79	Yes	Yes
+10/22/2022 0:09:15	Ibrahim Abbasi	836	39	Blue 1	Left Tarmac Left Side	2	4	4	Offense	0	0	17	14	6	Tarmac, Shield Generator	9				High Bar	High Bar	17	No	0	0	105		7		65	Yes	Yes
+10/22/2022 0:14:32	Ibrahim Abbasi	836	46	Blue 3	Left Tarmac Left Side	2	5	3	Offense	0	0	13	4	15	Against Fender	4				Mid Bar	No Climb	0	No	0	0	47		5	Misaligned shooter	65	No	No
+10/22/2022 0:20:10	Ibrahim Abbasi	836	60	Red 1	Left Tarmac Left Side	2	5	5	Offense	0	0	11	8	10	Tarmac, Shield Generator	7				Traversal Bar	High Bar	26	No	0	0	119		7		74	Yes	Yes
+10/22/2022 0:25:05	Ibrahim Abbasi	836	69	Red 2	Left Tarmac Left Side	2	4	4	Offense	0	0	13	13	7	Tarmac, Shield Generator	8				Traversal Bar	High Bar	23	No	0	0	104		7		36	Yes	Yes
+10/22/2022 0:29:39	Ibrahim Abbasi	836	77	Blue 3	Left Tarmac Left Side	2	5	3	Offense	0	0	11	8	10	Tarmac, Shield Generator	7				No Climb	No Climb	0	No	0	0	86		7		50	Yes	Yes
+10/22/2022 0:35:15	Ibrahim Abbasi	836	84	Blue 3	Left Tarmac Left Side	2	4	4	Offense	0	0	16	12	7	Against Fender, Tarmac	8				High Bar	High Bar	17	No	0	0	106		7		90	Yes	Yes
+10/22/2022 0:39:30	Ibrahim Abbasi	836	93	Blue 3	Left Tarmac Left Side	2	5	4	Offense	0	0	12	10	8	Tarmac, Shield Generator	8				Traversal Bar	High Bar	42	No	0	0	106		7		53	Yes	Yes
+10/22/2022 0:45:50	Ibrahim Abbasi	836	102	Red 1	Left Tarmac Left Side	2	5	5	Offense	1	1	10	9	8	Tarmac, Shield Generator	8				Traversal Bar	No Climb	35	No	0	0	80		7		92	Yes	No
+10/22/2022 0:52:10	Ibrahim Abbasi	836	116	Red 2	Left Tarmac Left Side	2	5	3	Offense	0	0	10	9	10	Against Fender, Tarmac	7				Traversal Bar	High Bar	32	No	0	0	95		7		48	Yes	Yes
+11/6/2022 20:49:19	Ibrahim Abbasi	8592	6	Blue 3	Left Tarmac Right Side	2	3	2	Offense	0	0	12	10	8	Tarmac, Shield Generator	7				Mid Bar	No Climb	0	No	0	0	70		7		77	Yes	No
+11/6/2022 20:56:11	Ibrahim Abbasi	8592	13	Red 3	Left Tarmac Right Side	2	3	2	Offense	0	0	9	5	7	Tarmac, Shield Generator, Against the wall	4				Mid Bar	Mid Bar	8	No	0	0	48		7		50	No	No
+11/6/2022 22:24:43	Ibrahim Abbasi	8592	26	Red 1	Left Tarmac Right Side	2	2	2	Offense	0	0	10	6	10	Tarmac, Shield Generator, Against the wall	6				Mid Bar	Mid Bar	18	No	1	0	70		7		51	Yes	Yes
+11/7/2022 10:04:28	Ibrahim Abbasi	8592	38	Blue 2	Left Tarmac Right Side	0	0	0	Offense	0	0	1	0	30	Tarmac, Shield Generator, While Moving	1				Mid Bar	Mid Bar	15	No	0	1	72		3		69	No	Yes
+11/7/2022 10:15:49	Ibrahim Abbasi	8592	47	Blue 2	Left Tarmac Right Side	2	4	2	Offense	0	0	10	6	10	Tarmac, Shield Generator	5				Mid Bar	Mid Bar	12	No	0	0	57		6		63	No	Yes
+11/7/2022 12:14:01	Ibrahim Abbasi	8592	54	Blue 1	Left Tarmac Right Side	2	2	1	Offense	0	0	2	2	8	Tarmac	4				Mid Bar	No Climb	0		1	0	46		7		56	Yes	No
+11/7/2022 12:18:37	Ibrahim Abbasi	8592	70	Red 1	Right Tarmac Left Side	2	1	0	Offense	0	0	3	3	4	Tarmac, Shield Generator	3				Mid Bar	No Climb	0			1	91		5		107	Yes	Yes
+11/8/2022 13:57:56	Ibrahim Abbasi	8592	77	Red 1	Left Tarmac Right Side	2	4	2	Offense	0	0	12	4	6	Tarmac, Shield Generator, Against the wall	4				Mid Bar	Mid Bar	15				50		5		86	No	No
+11/11/2022 18:10:37	Ibrahim Abbasi	8592	86	Blue 1	Left Tarmac Right Side	2	3	0	Offense	0	0	9	3	10	Tarmac	4				No Climb	No Climb	0	No			62		5		76	Yes	No
+11/12/2022 0:35:00	Ibrahim Abbasi	8592	96	Blue 3	Left Tarmac Right Side	2	2	0	Offense	0	0	4	3	10	Tarmac	3				No Climb	No Climb	0	No			58		4		98	Yes	No
+11/12/2022 0:39:36	Ibrahim Abbasi	8592	103	Red 1	Right Tarmac Left Side	2	1	1	Offense	0	0	8	5	10	Shield Generator	5				Mid Bar	Mid Bar	22	No			72		4		68	Yes	Yes
+11/12/2022 0:43:53	Ibrahim Abbasi	8592	114	Blue 2	Right Tarmac Left Side	2	1	1	Offense	0	0	7	6	8	Tarmac, Shield Generator	5				Mid Bar	Mid Bar	14				88		4		78	Yes	No
+11/22/2022 11:11:44	Ibrahim Abbasi	1111	8	Red 1	Left Tarmac Left Side	2	1	1	Offense	0	0	18	15	5	Tarmac, Shield Generator	9				No Climb	No Climb	0	No	0	0	93		8		70	Yes	Yes
+11/22/2022 11:18:38	Ibrahim Abbasi	1111	15	Blue 1	Left Tarmac Left Side	2	3	2	Offense	0	0	13	11	6	Tarmac, Shield Generator	8				Mid Bar	No Climb	0	No	0	0	68		7		41	Yes	No
+11/22/2022 11:37:37	Ibrahim Abbasi	1111	22	Blue 1	Left Tarmac Left Side	2	3	2	Offense	0	0	12	10	6	Tarmac, Shield Generator	8				Low Bar	No Climb	0	No	0	0	79		5		85	Yes	Yes
+11/22/2022 11:42:35	Ibrahim Abbasi	1111	31	Red 3	Left Tarmac Left Side	2	2	0	Offense	0	0	18	15	5	Tarmac, Shield Generator	9				No Climb	No Climb	0				74		8		63	Yes	No
+11/22/2022 11:47:43	Ibrahim Abbasi	1111	43	Red 3	Left Tarmac Left Side	2	2	2	Offense	0	0	19	8	8	Tarmac, Shield Generator	6				Mid Bar	No Climb	0				62		7		79	Yes	No
+11/22/2022 11:53:09	Ibrahim Abbasi	1111	52	Red 3	Left Tarmac Left Side	2	4	1	Offense	0	0	15	11	6	Tarmac, Shield Generator	8				Mid Bar	Mid Bar	9				67		7		54	Yes	Yes
+11/22/2022 11:56:52	Ibrahim Abbasi	1111	69	Blue 2	Left Tarmac Left Side	2	2	1	Offense	0	0	3	2	5	Tarmac, Shield Generator	7				No Climb	No Climb	0	Yes			36		1		104	No	Yes
+11/22/2022 12:04:17		1111	76	Red 2	Left Tarmac Left Side	2	1	1	Offense	0	0	18	15							Mid Bar	Mid Bar	10				107				35	Yes	Yes
+11/22/2022 12:11:18		1111	84	Blue 1	Right Tarmac Right Side	2	2	2	Offense	0	0	16	14							Low Bar	Low Bar	8				106				90	Yes	Yes
+11/22/2022 12:16:30		1111	95	Blue 2	Right Tarmac Right Side	2	2	2	Offense	0	0	12	10							No Climb	No Climb	0				91				75	Yes	Yes
+11/22/2022 12:20:29		1111	103	Red 2	Left Tarmac Left Side	2	3	2	Offense	0	0	16	9							Low Bar	Low Bar	8				72				68	Yes	Yes
