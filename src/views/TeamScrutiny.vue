@@ -1,0 +1,510 @@
+<template>
+  <div id="app">
+    <div class="topbar">
+      <router-link to="/" tag="button" class="return">
+        <i class="far fa-chevron-left" style="font-size: 14pt; margin-right: 5px;"></i>Team List
+      </router-link>
+      <span>Information about Team {{ $route.params.teamid }}</span>
+      
+    </div>
+    <div class="content">
+      <div class="maincontainer">
+        <h1>Team {{ $route.params.teamid }}: {{this.teamstats.teamname}}</h1>
+        <br/>
+        <br/>
+        <div class="maindatacont">
+          <div class="teamtable">
+            <span style="font-size: 20pt; font-weight: bold;">Robot Stats</span>
+
+                <p>Avg Score: {{teamstats.teamavgscore}}</p>
+                <p>Reliability: {{teamstats.reliability}}%</p>
+                <p>Most Reached Bar: {{teamstats.bar}}</p>
+                <p>Avg Climb Time: {{teamstats.teamavgclimbtime}} secs</p>
+                
+
+                <p>Avg Cycle Time: {{teamstats.teamavgcycle}} secs</p>
+                <p>Cooperation: {{teamstats.cooperation}}/10</p>
+                <p>Avg Penalties: {{teamstats.penalties}}</p>
+                <p>Match Strategy: {{teamstats.strat}}</p>
+
+
+                <p>Auton Accuracy: {{teamstats.autonacc}}%</p>
+                <p>Low Goal Acc.: {{teamstats.lowacc}}%</p>
+                <p>High Goal Acc.: {{teamstats.highacc}}%</p>
+                <p>Gets Cargo RP: {{teamstats.cargorp}}</p>
+                <p>Gets Climb RP: {{teamstats.climbrp}}</p>
+                <p>Shoots From: {{teamstats.shootpt}}</p>
+
+
+          </div>
+          <div class="graphcarousel"> 
+            <p>dogs</p>
+            <p>dogs</p>
+            <p>dogs</p>
+            <p>dogs</p>
+            <p>dogs</p>
+            <p>dogs</p>
+            <p>dogs</p>
+            <p>dogs</p>
+            <p>dogs</p>
+            <p>dogs</p>
+            <p>dogs</p>
+            <p>dogs</p>
+            <p>dogs</p>
+            <p>dogs</p>
+            <p>dogs</p>
+            <p>dogs</p>
+            <p>dogs</p>
+
+            <p>dogs</p><p>dogs</p>
+            <p>dogs</p>
+            <p>dogs</p>
+            <p>dogs</p>
+
+          </div>
+        </div>
+        <br/>
+        <hr/>
+        <br/>
+
+        <h1>All Entries (for team)</h1>
+        <div class="datasect">
+          <div class="datasectdata">
+
+            <span style="font-weight: bold;">egg</span>
+            <table style="font-size: 10pt; color: #6b6b6b;">
+              <tr>
+                <td>Avg Score: egg</td>
+                <td>Reliability: egg</td>
+                <td>Most Reached Bar: egg</td>
+                <td>Avg Climb Time: egg</td>
+                
+              </tr>
+              <tr>
+                <td>Avg Cycle Time: egg</td>
+                <td>Cooperation: egg</td>
+                <td>Avg Penalties: egg</td>
+                <td>Match Strategy: egg</td>
+              </tr>
+            </table>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+    
+    
+  </div>
+</template>
+
+<script>
+// import HelloWorld from './components/HelloWorld.vue'
+import axios from 'axios'
+
+export default {
+  name: 'App',
+
+  
+  
+  data() {
+    return{
+      csvData: [],
+      correspondingTeamNames: [],
+      teamstats: {}
+    }
+   
+  },
+
+  methods: {
+    mostFrequent(arr){
+      return Object.entries(
+        arr.reduce((a, v) => {
+          a[v] = a[v] ? a[v] + 1 : 1;
+          return a;
+        }, {})
+      ).reduce((a, v) => (v[1] >= a[1] ? v : a), [null, 0])[0];
+    },
+
+    getteamdata() {
+      var teams = []
+      this.csvData.forEach(item => {
+        teams.push(item.tnumber)
+        // console.log(item)
+      })
+      
+
+      teams = [...new Set(teams)]
+
+
+      // var teamdata = {}
+
+      var reliabillity = 0
+      var avgcoop = 0
+      var penalties = 0
+      var avgcycle = 0
+      var avgclimbtime = 0
+      var avgpoints = 0
+      var teamentries = 0
+
+      var autonaccuracy = 0;
+      var lowaccuracy = 0;
+      var highaccuracy = 0;
+      
+
+      var bar = []
+      var offdef = []
+      var carp = []
+      var clrp = []
+      var shtpt = []
+
+      console.log(this.$route.params.teamid)
+      this.csvData.filter(entry => entry.tnumber == this.$route.params.teamid).forEach((part) => {
+        
+        avgpoints += (parseInt(part.taxipts) || 0) + (parseInt(part.lowget) || 0) + ((parseInt(part.highget) || 0) * 2) + ((parseInt(part.autoget) || 0) * 2)
+        switch (part.climbget){
+          case "Traversal Bar":
+            avgpoints += 15
+        
+            break;
+
+          case "High Bar":
+            avgpoints += 10
+        
+            break;
+
+          case "Mid Bar":
+            avgpoints += 6
+
+            break;
+
+          case "Low Bar":
+            avgpoints += 4
+      
+            break;
+          
+          default:
+            avgpoints += 0
+            
+            
+        }
+
+        penalties += (parseInt(part.penaltycommit) || 0)
+
+        avgcycle += (parseInt(part.cyclesecs) || 0)
+
+        avgclimbtime += (parseInt(part.climbsecs) || 0)
+
+        avgcoop += (parseInt(part.cooprating) || 0)
+
+        if (part.broken.includes("No")){
+          reliabillity = reliabillity + 1
+        }
+        
+        autonaccuracy += ((parseInt(part.autoget) || 0)/(parseInt(part.autoshot) || 0))*100
+        lowaccuracy += ((parseInt(part.lowget) || 0)/(parseInt(part.lowshot) || 0))*100 || 0
+        highaccuracy += ((parseInt(part.highget) || 0)/(parseInt(part.highshot) || 0))*100 || 0
+
+        console.log(`Low Get: ${(parseInt(part.lowget) || 0)}`)
+        console.log(`High Get: ${(parseInt(part.highget) || 0)}`)
+        console.log(`Low Shot: ${(parseInt(part.lowshot) || 0)}`)
+        console.log(`High Shot: ${(parseInt(part.highshot) || 0)}`)
+
+        console.log(`Low Accuracy: ${lowaccuracy}`)
+        console.log(`High Accuracy: ${highaccuracy}`)
+
+        console.log((parseInt(part.lowget) || 0))
+        bar.push(part.climbget)
+        offdef.push(part.matchstrat)
+
+        carp.push(part.cargorp)
+        clrp.push(part.climberrp)
+        shtpt.push(part.shootpoint)
+        teamentries++
+
+        // console.log(autonaccuracy)
+        
+          
+        })
+
+        axios.get(`https://www.thebluealliance.com/api/v3/team/frc${this.$route.params.teamid}/simple`).then(response => {
+          // console.log(response.data)
+          this.teamstats = 
+          {
+            teamname: response.data.nickname, 
+            teamnumber: this.$route.params.teamid, 
+            teamavgscore: Math.round(avgpoints/teamentries), 
+            teamavgcycle: Math.round(avgcycle/teamentries), 
+            reliability: Math.round((reliabillity/teamentries)*100), 
+            cooperation: Math.round(avgcoop/teamentries), 
+            bar: (this.mostFrequent(bar) != "No Climb") ? this.mostFrequent(bar).slice(0, -4) : "No Climb", 
+            strat: this.mostFrequent(offdef), penalties: Math.round(penalties/teamentries), 
+            teamavgclimbtime: Math.round(avgclimbtime/teamentries), 
+            autonacc: Math.round(autonaccuracy/teamentries), 
+            lowacc: Math.round(lowaccuracy/teamentries), 
+            highacc: Math.round(highaccuracy/teamentries),
+            cargorp: this.mostFrequent(carp),
+            climbrp: this.mostFrequent(clrp),
+            shootpt: this.mostFrequent(shtpt)
+
+          }
+          // this.teamstats = teamdata
+        })
+
+      // console.log(teamdata)
+
+      // teamdata.sort((a, b) => parseInt(a.teamnumber) - parseInt(b.teamnumber))
+      
+      // teamdata.forEach(team => console.log(team))
+
+      // return teamdata
+    }
+  },
+
+  computed: {
+    // teamstats() {
+      
+      
+    // }
+  },
+
+  async mounted() {
+
+    
+    axios.defaults.headers.common['X-TBA-Auth-Key'] = "fbkgBWLltUBDHgZLy1P2OAnKWX4VfSHjEJDYNH9Jz9vXqpjxkUJpxXKJg4HYImIn";
+
+    fetch("/../scouting.tsv").then(response => response.text()).then(data => {
+      var fieldnames = ["date", "name", "tnumber", "tmatch", "dstation", "autonposit", "taxipts", "autoshot", "autoget", "matchstrat", "lowshot", "lowget", "highshot", "highget", "cyclesecs", "shootpoint", "offenserating", "oppcargoshot", "oppcargoget", "defenserating", "climbtried", "climbget", "climbsecs", "broken", "penaltycommit", "penaltydrawn", "allscore", "problems", "cooprating", "notes", "opponentscore", "cargorp", "climberrp"]
+      var scouts = data.slice(data.indexOf("\r\n") + 1).split("\n")
+      // console.log(scouts)
+      
+      const arr = scouts.map(function (row) {
+        const values = row.split("\t");
+        const el = fieldnames.reduce(function (object, header, index) {
+          object[header] = values[index];
+          return object;
+        }, {});
+        return el;
+      });
+
+      this.csvData = arr
+      this.csvData.shift()
+      this.getteamdata()
+    })    
+
+    // axios.get("https://www.thebluealliance.com/api/v3/team/frc1885/simple").then(response => {console.log(response.data)})
+
+    
+  }
+
+}
+</script>
+
+<style scoped>
+
+  @import url("https://fonts.googleapis.com/css?family=Roboto");
+
+  html,body {
+    color: white;
+    margin: 0 0;
+    padding: 0 0;
+    font-family: 'Roboto';
+  }
+
+  hr{
+    border: solid 0.5px #6b6b6b;
+    border-bottom: none;
+  }
+  .maindatacont{
+      /* height: 500px; */
+      width: 100%;
+      /* background: green; */
+      display: flex;
+      flex-direction: column;
+  }
+
+  h1{
+    font-size: 5vw;
+  }
+
+  @media (hover: hover) and (pointer: fine) and (min-width: 700px){
+    .maindatacont{
+      height: 500px;
+      width: 100%;
+      /* background: green; */
+      display: flex;
+      flex-direction: row;
+    }
+
+    h1{
+      font-size: 2vw
+    }
+  }
+
+
+  
+
+  
+
+  .teamtable{
+    height: 500px;
+    /* background-color: orange; */
+    flex: 0 0 50%;
+    box-sizing: border-box;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+  }
+  .graphcarousel{
+    /* height: 100%; */
+    background-color: orange;
+    flex: 0 0 50%;
+    overflow: auto;
+  }
+
+  .return {
+    border: none;
+    background-color: transparent;
+    color: rgb(40, 36, 255);
+    height: 100%;
+    width: 108px;
+    font-family: "Roboto";
+    font-size: 14pt;
+    /* background-color: orange; */
+  }
+
+  .topbar > span{
+    color: white;
+    /* background-color: orange; */
+    height: 100%;
+    padding: 10px;
+    margin-left: auto;
+    text-align: center;
+    
+  
+  }
+
+  #app{
+    display: flex;
+    flex-direction: column;
+  }
+
+  #mainbar{
+    height: 60px;
+    background-color: rgb(31, 31, 31);
+    /* box-shadow: 0 0 5px 0px #000000; */
+    z-index: 100;
+    
+  }
+
+  #mainbar > p {
+    height: 60px;
+    line-height: 30px;
+    margin-left: 5px;
+    
+  }
+
+  .topbar{
+    height: 40px;
+    background-color: #181818;
+    display: flex;
+    flex-direction: row;
+    /* justify-content: space-evenly; */
+    box-sizing: border-box;
+    padding-left: 10px;
+    
+    
+    
+  }
+
+  .content{
+    display: flex;
+    flex-direction: row;
+  }
+
+  .maincontainer{
+    padding: 5vw;
+    height: calc(100vh - 100px);
+    flex-grow: 1;
+    width: 100vw;
+    background-color: rgb(48, 48, 48);
+    box-sizing: border-box;
+    overflow: auto;
+  }
+
+  .maincontainer > h1{
+    margin: 0 0;
+    padding: 0 0;
+  }
+
+  .datasect{
+    display: flex;
+    flex-direction: row;
+    min-height: 60px;
+    border-width: 5px;
+    border-style: none;
+    border-radius: 5px;
+    background-color: rgb(27, 27, 27);
+    box-sizing: border-box;
+    margin: 10px;
+    box-shadow: 0 0 5px 0px #000000;
+  }
+
+  .onelookperf {
+    height: inherit;
+    background-color: green;
+    width: 20px; 
+    border-radius: 5px 0 0 5px;
+    writing-mode: vertical-rl;
+    padding: 5px 0;
+    padding-left: 5px;
+    /* box-sizing: border-box; */
+  }
+
+  .datasectdata{
+    height: inherit;
+    padding: 10px 10px;
+    /* padding-left: 10px; */
+    box-sizing: border-box;
+    width: 100%;
+    /* background-color: orange; */
+    /* background */
+  }
+
+
+
+  .datasect > p{
+    margin: 0 0;
+    /* margin-bottom: 10px; */
+    
+    padding: 0 0;
+  }
+
+
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #424242; 
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: #888; 
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+  }
+
+
+  /* .datasectdata > table, td {
+    border: solid red;
+  } */
+
+  table{
+    width: 100%;
+  }
+
+</style>
