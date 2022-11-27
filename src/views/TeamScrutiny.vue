@@ -101,6 +101,9 @@
 <script>
 // import HelloWorld from './components/HelloWorld.vue'
 import axios from 'axios'
+import { initializeApp } from "firebase/app";
+import { getDatabase, ref, onValue} from "firebase/database";
+
 
 export default {
   name: 'App',
@@ -129,7 +132,7 @@ export default {
     getteamdata() {
       var teams = []
       this.csvData.forEach(item => {
-        teams.push(item.tnumber)
+        teams.push(item.team)
         // console.log(item)
       })
       
@@ -159,7 +162,7 @@ export default {
       var shtpt = []
 
       console.log(this.$route.params.teamid)
-      this.csvData.filter(entry => entry.tnumber == this.$route.params.teamid).forEach((part) => {
+      this.csvData.filter(entry => entry.team == this.$route.params.teamid).forEach((part) => {
         
         avgpoints += (parseInt(part.taxipts) || 0) + (parseInt(part.lowget) || 0) + ((parseInt(part.highget) || 0) * 2) + ((parseInt(part.autoget) || 0) * 2)
         switch (part.climbget){
@@ -189,11 +192,11 @@ export default {
             
         }
 
-        penalties += (parseInt(part.penaltycommit) || 0)
+        penalties += (parseInt(part.commpenalties) || 0)
 
-        avgcycle += (parseInt(part.cyclesecs) || 0)
+        avgcycle += (parseInt(part.cycletime) || 0)
 
-        avgclimbtime += (parseInt(part.climbsecs) || 0)
+        avgclimbtime += (parseInt(part.timetoclimb) || 0)
 
         avgcoop += (parseInt(part.cooprating) || 0)
 
@@ -201,25 +204,16 @@ export default {
           reliabillity = reliabillity + 1
         }
         
-        autonaccuracy += ((parseInt(part.autoget) || 0)/(parseInt(part.autoshot) || 0))*100
+        autonaccuracy += ((parseInt(part.autonget) || 0)/(parseInt(part.autonshot) || 0))*100 || 0
         lowaccuracy += ((parseInt(part.lowget) || 0)/(parseInt(part.lowshot) || 0))*100 || 0
         highaccuracy += ((parseInt(part.highget) || 0)/(parseInt(part.highshot) || 0))*100 || 0
 
-        console.log(`Low Get: ${(parseInt(part.lowget) || 0)}`)
-        console.log(`High Get: ${(parseInt(part.highget) || 0)}`)
-        console.log(`Low Shot: ${(parseInt(part.lowshot) || 0)}`)
-        console.log(`High Shot: ${(parseInt(part.highshot) || 0)}`)
-
-        console.log(`Low Accuracy: ${lowaccuracy}`)
-        console.log(`High Accuracy: ${highaccuracy}`)
-
-        console.log((parseInt(part.lowget) || 0))
         bar.push(part.climbget)
         offdef.push(part.matchstrat)
 
         carp.push(part.cargorp)
-        clrp.push(part.climberrp)
-        shtpt.push(part.shootpoint)
+        clrp.push(part.climbrp)
+        shtpt.push(part.shotlocation)
         teamentries++
 
         // console.log(autonaccuracy)
@@ -271,26 +265,48 @@ export default {
   async mounted() {
 
     
-    axios.defaults.headers.common['X-TBA-Auth-Key'] = "fbkgBWLltUBDHgZLy1P2OAnKWX4VfSHjEJDYNH9Jz9vXqpjxkUJpxXKJg4HYImIn";
+    // axios.defaults.headers.common['X-TBA-Auth-Key'] = "fbkgBWLltUBDHgZLy1P2OAnKWX4VfSHjEJDYNH9Jz9vXqpjxkUJpxXKJg4HYImIn";
 
-    fetch("/../scouting.tsv").then(response => response.text()).then(data => {
-      var fieldnames = ["date", "name", "tnumber", "tmatch", "dstation", "autonposit", "taxipts", "autoshot", "autoget", "matchstrat", "lowshot", "lowget", "highshot", "highget", "cyclesecs", "shootpoint", "offenserating", "oppcargoshot", "oppcargoget", "defenserating", "climbtried", "climbget", "climbsecs", "broken", "penaltycommit", "penaltydrawn", "allscore", "problems", "cooprating", "notes", "opponentscore", "cargorp", "climberrp"]
-      var scouts = data.slice(data.indexOf("\r\n") + 1).split("\n")
-      // console.log(scouts)
+    // fetch("/../scouting.tsv").then(response => response.text()).then(data => {
+    //   var fieldnames = ["date", "name", "tnumber", "tmatch", "dstation", "autonposit", "taxipts", "autoshot", "autoget", "matchstrat", "lowshot", "lowget", "highshot", "highget", "cyclesecs", "shootpoint", "offenserating", "oppcargoshot", "oppcargoget", "defenserating", "climbtried", "climbget", "climbsecs", "broken", "penaltycommit", "penaltydrawn", "allscore", "problems", "cooprating", "notes", "opponentscore", "cargorp", "climberrp"]
+    //   var scouts = data.slice(data.indexOf("\r\n") + 1).split("\n")
+    //   // console.log(scouts)
       
-      const arr = scouts.map(function (row) {
-        const values = row.split("\t");
-        const el = fieldnames.reduce(function (object, header, index) {
-          object[header] = values[index];
-          return object;
-        }, {});
-        return el;
-      });
+    //   const arr = scouts.map(function (row) {
+    //     const values = row.split("\t");
+    //     const el = fieldnames.reduce(function (object, header, index) {
+    //       object[header] = values[index];
+    //       return object;
+    //     }, {});
+    //     return el;
+    //   });
 
-      this.csvData = arr
-      this.csvData.shift()
+    //   this.csvData = arr
+    //   this.csvData.shift()
+    //   this.getteamdata()
+    // })    
+
+    const firebasesetup = {
+      databaseURL: "https://frcscoutsheet-default-rtdb.firebaseio.com",
+    }
+
+    const app = initializeApp(firebasesetup)
+
+    // console.log(app)
+
+    const db = getDatabase(app)
+
+    // console.log(db)
+
+    const refer = ref(db)
+
+    onValue(refer, (event) => {
+      this.csvData = event.val()
+      console.log(this.csvData)
       this.getteamdata()
-    })    
+    })
+    
+
 
     // axios.get("https://www.thebluealliance.com/api/v3/team/frc1885/simple").then(response => {console.log(response.data)})
 
