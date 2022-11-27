@@ -16,6 +16,7 @@
           <div class="teamtable">
             <span style="font-size: 20pt; font-weight: bold;">Robot Stats</span>
 
+            <div class="scoringdatas">
                 <p>Avg Score: {{teamstats.teamavgscore}}</p>
                 <p>Reliability: {{teamstats.reliability}}%</p>
                 <p>Most Reached Bar: {{teamstats.bar}}</p>
@@ -34,6 +35,7 @@
                 <p>Gets Cargo RP: {{teamstats.cargorp}}</p>
                 <p>Gets Climb RP: {{teamstats.climbrp}}</p>
                 <p>Shoots From: {{teamstats.shootpt}}</p>
+            </div>
 
 
           </div>
@@ -68,25 +70,29 @@
         <br/>
 
         <h1>All Entries (for team)</h1>
-        <div class="datasect">
-          <div class="datasectdata">
+        <div class="datasect" v-for="i in teamentries" :key="i.date">
+          <div class="datasectdata" >
 
-            <span style="font-weight: bold;">egg</span>
-            <table style="font-size: 10pt; color: #6b6b6b;">
-              <tr>
-                <td>Avg Score: egg</td>
-                <td>Reliability: egg</td>
-                <td>Most Reached Bar: egg</td>
-                <td>Avg Climb Time: egg</td>
-                
-              </tr>
-              <tr>
-                <td>Avg Cycle Time: egg</td>
-                <td>Cooperation: egg</td>
-                <td>Avg Penalties: egg</td>
-                <td>Match Strategy: egg</td>
-              </tr>
-            </table>
+            <span style="font-weight: bold;">{{dateCompiler(i.date)}}</span>
+
+            <div class="gridcontainer">
+              <p class="dptgriditem">Scouter Name: {{i.name}}</p>
+              <p class="dptgriditem">Broken?: {{i.broken}}</p>
+              <p class="dptgriditem">Reached Bar: {{i.climbget}}</p>
+              <p class="dptgriditem">Climb Time: {{i.timetoclimb}} secs</p>
+              <p class="dptgriditem">Cycle Time: {{i.cycletime}} secs</p>
+              <p class="dptgriditem">Cooperation: {{i.cooprating}}/10</p>
+              <p class="dptgriditem">Penalties: {{i.drawnpenalties}}</p>
+              <p class="dptgriditem">Match Strategy: {{i.matchstrat}}</p>
+              <p class="dptgriditem">Shot Location(s): {{i.shotlocation}}</p>
+              <p class="dptgriditem">Cargo RP Made: {{i.cargorp}}</p>
+              <p class="dptgriditem">Climber RP Made: {{i.climbrp}}</p>
+              <p class="dptgriditem">Alliance Score: {{i.totalscore}} pts</p>
+              <p class="dptgriditem">Balls Shot (Low): {{i.lowshot}} balls</p>
+              <p class="dptgriditem">Balls Made (Low): {{i.lowget}} balls</p>
+              <p class="dptgriditem">Balls Made (High): {{i.highshot}} balls</p>
+              <p class="dptgriditem">Balls Made (High): {{i.highget}} balls</p>
+            </div>
 
           </div>
         </div>
@@ -114,12 +120,18 @@ export default {
     return{
       csvData: [],
       correspondingTeamNames: [],
-      teamstats: {}
+      teamstats: {},
+      teamentries: [],
     }
    
   },
 
   methods: {
+    dateCompiler(dstring){
+      var date = new Date(dstring)
+      return date.toLocaleDateString(navigator.language, { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })
+    },
+
     mostFrequent(arr){
       return Object.entries(
         arr.reduce((a, v) => {
@@ -130,6 +142,7 @@ export default {
     },
 
     getteamdata() {
+      
       var teams = []
       this.csvData.forEach(item => {
         teams.push(item.team)
@@ -162,8 +175,11 @@ export default {
       var shtpt = []
 
       console.log(this.$route.params.teamid)
+      this.teamentries = this.csvData.filter(entry => entry.team == this.$route.params.teamid)
+      console.log(this.teamentries)
       this.csvData.filter(entry => entry.team == this.$route.params.teamid).forEach((part) => {
         
+        // console.log(this.teamentries)
         avgpoints += (parseInt(part.taxipts) || 0) + (parseInt(part.lowget) || 0) + ((parseInt(part.highget) || 0) * 2) + ((parseInt(part.autoget) || 0) * 2)
         switch (part.climbget){
           case "Traversal Bar":
@@ -265,7 +281,7 @@ export default {
   async mounted() {
 
     
-    // axios.defaults.headers.common['X-TBA-Auth-Key'] = "fbkgBWLltUBDHgZLy1P2OAnKWX4VfSHjEJDYNH9Jz9vXqpjxkUJpxXKJg4HYImIn";
+    axios.defaults.headers.common['X-TBA-Auth-Key'] = "fbkgBWLltUBDHgZLy1P2OAnKWX4VfSHjEJDYNH9Jz9vXqpjxkUJpxXKJg4HYImIn";
 
     // fetch("/../scouting.tsv").then(response => response.text()).then(data => {
     //   var fieldnames = ["date", "name", "tnumber", "tmatch", "dstation", "autonposit", "taxipts", "autoshot", "autoget", "matchstrat", "lowshot", "lowget", "highshot", "highget", "cyclesecs", "shootpoint", "offenserating", "oppcargoshot", "oppcargoget", "defenserating", "climbtried", "climbget", "climbsecs", "broken", "penaltycommit", "penaltydrawn", "allscore", "problems", "cooprating", "notes", "opponentscore", "cargorp", "climberrp"]
@@ -331,12 +347,31 @@ export default {
     border: solid 0.5px #6b6b6b;
     border-bottom: none;
   }
+
+  .dptgriditem {
+    font-size: 10pt;
+    color: #6b6b6b;
+    margin: 0 0;
+    padding: 0 0;
+  }
+
+  .gridcontainer{
+    display: grid;
+    grid-template-columns: auto auto;
+    /* grid-template-columns: auto; */
+  }
   .maindatacont{
       /* height: 500px; */
       width: 100%;
       /* background: green; */
       display: flex;
       flex-direction: column;
+  }
+
+  .scoringdatas{
+    display: grid;
+    grid-template-columns: auto auto;
+    font-size: 12pt;
   }
 
   h1{
@@ -354,6 +389,12 @@ export default {
 
     h1{
       font-size: 2vw
+    }
+
+    .gridcontainer{
+      display: grid;
+      grid-template-columns: auto auto auto auto;
+      /* grid-template-columns: auto; */
     }
   }
 
