@@ -35,6 +35,7 @@
                 <p>Gets Cargo RP: {{teamstats.cargorp}}</p>
                 <p>Gets Climb RP: {{teamstats.climbrp}}</p>
                 <p>Shoots From: {{teamstats.shootpt}}</p>
+                <p>Climb OPR: {{teamstats.climbavg}}</p>
             </div>
 
 
@@ -45,17 +46,12 @@
             </div>
 
             <div class="carouseldiv">
+              <canvas ref="charttwo"></canvas>
             </div>
 
             <div class="carouseldiv">
-
+              <canvas ref="chartthree"></canvas>
             </div>
-
-            <div class="carouseldiv">
-
-            </div>
-            
-
           </div>
         </div>
         <br/>
@@ -116,7 +112,9 @@ export default {
       correspondingTeamNames: [],
       teamstats: {},
       teamentries: [],
-
+      labels4graph2: [],
+      
+      climbopr: [],
       maxcycletime: 0,
       mincycletime: 0,
       maxclimbtime: 0,
@@ -128,6 +126,53 @@ export default {
   },
 
   methods: {
+
+    perMatchData(){
+      var pointsarray = []
+      var lowballsget = []
+      var lowballsshot = []
+      var highballsget = []
+      var highballsshot = []
+      this.teamentries.forEach((entry) => {
+        var avgpoints = 0;
+        avgpoints += (parseInt(entry.taxipts) || 0) + (parseInt(entry.lowget) || 0) + ((parseInt(entry.highget) || 0) * 2) + ((parseInt(entry.autoget) || 0) * 2)
+        switch (entry.climbget){
+          case "Traversal Bar":
+            avgpoints += 15
+        
+            break;
+
+          case "High Bar":
+            avgpoints += 10
+        
+            break;
+
+          case "Mid Bar":
+            avgpoints += 6
+
+            break;
+
+          case "Low Bar":
+            avgpoints += 4
+      
+            break;
+          
+          default:
+            avgpoints += 0 
+        }
+        pointsarray.push(avgpoints)
+
+        lowballsget.push(entry.lowget)
+        lowballsshot.push(entry.lowshot)
+        highballsget.push(entry.highget)
+        highballsshot.push(entry.highshot)
+
+      })
+
+
+      return [pointsarray, lowballsget, lowballsshot, highballsget, highballsshot]
+    },
+
     setupChartOne() {
       console.log(this.teamstats)
       var ctx = this.$refs.chartone.getContext('2d')
@@ -137,7 +182,7 @@ export default {
       new Chart(ctx, {
         type: 'radar',
         data: {
-          labels: ['Average Score', 'Auton Accuracy', 'High Goal Accuracy', 'Low Goal Accuracy', 'Reliability', 'Cooperation', 'Cycle Speed', 'Climb Speed'],
+          labels: ['Average Score', 'Auton Accuracy', 'High Goal Accuracy', 'Low Goal Accuracy', 'Reliability', 'Cooperation', 'Cycle Speed', 'Climb Speed', 'Climb OPR'],
           datasets: [{
             label: `Team ${this.$route.params.teamid}`,
             data: 
@@ -149,7 +194,8 @@ export default {
               this.teamstats.reliability, 
               this.teamstats.cooperation*10, 
               100-Math.round(Math.abs(this.teamstats.teamavgcycle-this.mincycletime)/Math.abs(this.maxcycletime-this.mincycletime)*100), 
-              100-Math.round(Math.abs(this.teamstats.teamavgclimbtime-this.minclimbtime)/Math.abs(this.maxclimbtime-this.minclimbtime)*100)
+              100-Math.round(Math.abs(this.teamstats.teamavgclimbtime-this.minclimbtime)/Math.abs(this.maxclimbtime-this.minclimbtime)*100),
+              Math.round(Math.abs(this.teamstats.climbavg-this.climbopr[1])/Math.abs(this.climbopr[0]-this.climbopr[1])*100),
             ],
             borderWidth: 2,
             borderColor: "rgb(255, 0, 55)",
@@ -169,6 +215,121 @@ export default {
         }
       })
     },
+
+    setupChartTwo(names) {
+      console.log(this.teamstats)
+      var ctx = this.$refs.charttwo.getContext('2d')
+
+      Chart.defaults.borderColor = '#6b6b6b';
+      // Chart.maintainAspectRatio = false
+      new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: names,
+          datasets: [{
+            label: `Points`,
+            data: this.perMatchData()[0],
+            borderWidth: 2,
+            borderColor: "rgb(255, 0, 55)",
+            backgroundColor: "rgb(255, 0, 55, 0.25)"
+          }]
+        },
+        options: {
+          plugins: {
+            title: {
+              display: true,
+              text: "Points Scored per Match",
+              font: {
+                size: 24,
+                weight: "normal"
+              },
+              // color: "white",
+              
+            }
+          },
+          scales: {
+            y: {
+              beginAtZero: true
+            }, 
+            r: {
+              ticks: {
+                  display: false,
+                  backdropColor: "rgb(48, 48, 48)"
+              }
+            }
+          },
+          maintainAspectRatio: false,
+        }
+      })
+    },
+
+
+    setupChartThree(names) {
+      console.log(this.teamstats)
+      var ctx = this.$refs.chartthree.getContext('2d')
+
+      Chart.defaults.borderColor = '#6b6b6b';
+      // Chart.maintainAspectRatio = false
+      new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: names,
+          datasets: [
+            {
+              label: `High Goal Balls Shot`,
+              data: this.perMatchData()[4],
+              borderWidth: 2,
+              borderColor: "rgb(255, 0, 55)",
+            },
+            {
+              label: `High Goal Balls Made`,
+              data: this.perMatchData()[3],
+              borderWidth: 2,
+              borderColor: "rgb(0, 157, 255)",
+            },
+            {
+              label: `Low Goal Balls Shot`,
+              data: this.perMatchData()[2],
+              borderWidth: 2,
+              borderColor: "rgb(170, 0, 255)",
+            },
+            {
+              label: `Low Goal Balls Made`,
+              data: this.perMatchData()[1],
+              borderWidth: 2,
+              borderColor: "rgb(47, 255, 0)",
+            },
+        ]
+        },
+        options: {
+          plugins: {
+            title: {
+              display: true,
+              text: "Balls Shot vs. Balls Made",
+              font: {
+                size: 24,
+                weight: "normal"
+              },
+              // color: "white",
+              
+            }
+          },
+          scales: {
+            y: {
+              beginAtZero: true
+            }, 
+            r: {
+              ticks: {
+                  display: false,
+                  backdropColor: "rgb(48, 48, 48)"
+              }
+            }
+          },
+          maintainAspectRatio: false,
+        }
+      })
+    },
+    
 
     dateCompiler(dstring){
       var date = new Date(dstring)
@@ -199,6 +360,7 @@ export default {
       var autonaccuracy = 0;
       var lowaccuracy = 0;
       var highaccuracy = 0;
+      var climberavgs = 0;
       
 
       var bar = []
@@ -206,38 +368,40 @@ export default {
       var carp = []
       var clrp = []
       var shtpt = []
+      var matches = []
 
       console.log(this.$route.params.teamid)
       this.teamentries = this.csvData.filter(entry => entry.team == this.$route.params.teamid)
       console.log(this.teamentries)
+      
       this.csvData.filter(entry => entry.team == this.$route.params.teamid).forEach((part) => {
         
-        // console.log(this.teamentries)
+        
         avgpoints += (parseInt(part.taxipts) || 0) + (parseInt(part.lowget) || 0) + ((parseInt(part.highget) || 0) * 2) + ((parseInt(part.autoget) || 0) * 2)
         switch (part.climbget){
           case "Traversal Bar":
             avgpoints += 15
-        
+            climberavgs += 15
             break;
 
           case "High Bar":
             avgpoints += 10
-        
+            climberavgs += 10
             break;
 
           case "Mid Bar":
             avgpoints += 6
-
+            climberavgs += 6
             break;
 
           case "Low Bar":
             avgpoints += 4
-      
+            climberavgs += 4
             break;
           
           default:
             avgpoints += 0
-            
+            climberavgs += 0
             
         }
 
@@ -264,6 +428,7 @@ export default {
         clrp.push(part.climbrp)
         shtpt.push(part.shotlocation)
         teamentries++
+        matches.push(`Match ${teamentries}`)
 
         // console.log(autonaccuracy)
         
@@ -288,12 +453,16 @@ export default {
             highacc: Math.round(highaccuracy/teamentries),
             cargorp: this.mostFrequent(carp),
             climbrp: this.mostFrequent(clrp),
-            shootpt: this.mostFrequent(shtpt)
+            shootpt: this.mostFrequent(shtpt),
+            climbavg: (climberavgs/teamentries).toFixed(2)
 
           }
 
           this.setupChartOne()
-          console.log(Math.round(Math.abs(this.teamstats.teamavgcycle-this.mincycletime)/Math.abs(this.maxcycletime-this.mincycletime)*100))
+          this.setupChartTwo(matches)
+          this.setupChartThree(matches)
+          console.log(matches)
+          // console.log(Math.round(Math.abs(this.teamstats.teamavgcycle-this.mincycletime)/Math.abs(this.maxcycletime-this.mincycletime)*100))
           // this.teamstats = teamdata
         })
 
@@ -319,6 +488,8 @@ export default {
       var climbtimes = []
       var pointdata = []
 
+      var climberavgs = []
+
 
 
       teams.forEach(team => {
@@ -326,6 +497,7 @@ export default {
         var avgpoints = 0
         var avgclimbtime = 0
         var totalentries = 0
+        var clavgs = 0
         
         this.csvData.filter(entry => entry.team == team).forEach((part) => {
           avgcycle += (parseInt(part.cycletime) || 0)
@@ -334,27 +506,31 @@ export default {
           switch (part.climbget){
             case "Traversal Bar":
               avgpoints += 15
-          
+              clavgs += 15
               break;
 
             case "High Bar":
               avgpoints += 10
+              clavgs += 10
          
               break;
 
             case "Mid Bar":
               avgpoints += 6
+              clavgs += 6
 
               break;
 
             case "Low Bar":
               avgpoints += 4
-        
+              clavgs += 4
+
               break;
             
             default:
               avgpoints += 0
-             
+              clavgs += 0
+
               
           }
 
@@ -365,10 +541,12 @@ export default {
         avgpoints /= totalentries
         avgclimbtime /= totalentries
         avgcycle /= totalentries
+        clavgs /= totalentries
 
         cycletimes.push(Math.round(avgcycle))
         climbtimes.push(Math.round(avgclimbtime))
         pointdata.push(Math.round(avgpoints))
+        climberavgs.push(clavgs.toFixed(2))
 
 
 
@@ -381,6 +559,8 @@ export default {
 
       pointdata = pointdata.sort((a, b) => {return a - b})
 
+      climberavgs = climberavgs.sort((a, b) => {return a - b})
+
       console.log(pointdata.at(-1))
 
       
@@ -392,7 +572,10 @@ export default {
       this.maxpts = pointdata.at(-1)
       this.minpts = pointdata[0]
 
-      console.log(this.maxcycletime - this.mincycletime)
+      this.climbopr = [climberavgs.at(-1), climberavgs[0]]
+
+      console.log(this.climbopr)
+      
 
 
 
