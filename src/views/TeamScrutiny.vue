@@ -40,28 +40,21 @@
 
           </div>
           <div class="graphcarousel"> 
-            <p>dogs</p>
-            <p>dogs</p>
-            <p>dogs</p>
-            <p>dogs</p>
-            <p>dogs</p>
-            <p>dogs</p>
-            <p>dogs</p>
-            <p>dogs</p>
-            <p>dogs</p>
-            <p>dogs</p>
-            <p>dogs</p>
-            <p>dogs</p>
-            <p>dogs</p>
-            <p>dogs</p>
-            <p>dogs</p>
-            <p>dogs</p>
-            <p>dogs</p>
+            <div class="carouseldiv">
+              <canvas ref="chartone"></canvas>
+            </div>
 
-            <p>dogs</p><p>dogs</p>
-            <p>dogs</p>
-            <p>dogs</p>
-            <p>dogs</p>
+            <div class="carouseldiv">
+            </div>
+
+            <div class="carouseldiv">
+
+            </div>
+
+            <div class="carouseldiv">
+
+            </div>
+            
 
           </div>
         </div>
@@ -70,7 +63,7 @@
         <br/>
 
         <h1>All Entries (for team)</h1>
-        <div class="datasect" v-for="i in teamentries" :key="i.date">
+        <div class="datasect" v-for="i in teamentries" :key="i.match">
           <div class="datasectdata" >
 
             <span style="font-weight: bold;">{{dateCompiler(i.date)}}</span>
@@ -108,7 +101,8 @@
 // import HelloWorld from './components/HelloWorld.vue'
 import axios from 'axios'
 import { initializeApp } from "firebase/app";
-import { getDatabase, ref, onValue} from "firebase/database";
+import { getDatabase, ref, onValue } from "firebase/database";
+import Chart from 'chart.js/auto';
 
 
 export default {
@@ -122,11 +116,60 @@ export default {
       correspondingTeamNames: [],
       teamstats: {},
       teamentries: [],
+
+      maxcycletime: 0,
+      mincycletime: 0,
+      maxclimbtime: 0,
+      minclimbtime: 0,
+      maxpts: 0,
+      minpts: 0,
     }
    
   },
 
   methods: {
+    setupChartOne() {
+      console.log(this.teamstats)
+      var ctx = this.$refs.chartone.getContext('2d')
+
+      Chart.defaults.borderColor = '#6b6b6b';
+      // Chart.maintainAspectRatio = false
+      new Chart(ctx, {
+        type: 'radar',
+        data: {
+          labels: ['Average Score', 'Auton Accuracy', 'High Goal Accuracy', 'Low Goal Accuracy', 'Reliability', 'Cooperation', 'Cycle Speed', 'Climb Speed'],
+          datasets: [{
+            label: `Team ${this.$route.params.teamid}`,
+            data: 
+            [
+              Math.round(Math.abs(this.teamstats.teamavgscore-this.minpts)/Math.abs(this.maxpts-this.minpts)*100), 
+              this.teamstats.autonacc, 
+              this.teamstats.highacc, 
+              this.teamstats.lowacc, 
+              this.teamstats.reliability, 
+              this.teamstats.cooperation*10, 
+              100-Math.round(Math.abs(this.teamstats.teamavgcycle-this.mincycletime)/Math.abs(this.maxcycletime-this.mincycletime)*100), 
+              100-Math.round(Math.abs(this.teamstats.teamavgclimbtime-this.minclimbtime)/Math.abs(this.maxclimbtime-this.minclimbtime)*100)
+            ],
+            borderWidth: 2,
+            borderColor: "rgb(255, 0, 55)",
+            backgroundColor: "rgb(255, 0, 55, 0.25)"
+          }]
+        },
+        options: {
+          scales: {
+            r: {
+              ticks: {
+                  display: false,
+                  backdropColor: "rgb(48, 48, 48)"
+              }
+            }
+          },
+          maintainAspectRatio: false,
+        }
+      })
+    },
+
     dateCompiler(dstring){
       var date = new Date(dstring)
       return date.toLocaleDateString(navigator.language, { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })
@@ -142,16 +185,6 @@ export default {
     },
 
     getteamdata() {
-      
-      var teams = []
-      this.csvData.forEach(item => {
-        teams.push(item.team)
-        // console.log(item)
-      })
-      
-
-      teams = [...new Set(teams)]
-
 
       // var teamdata = {}
 
@@ -258,16 +291,111 @@ export default {
             shootpt: this.mostFrequent(shtpt)
 
           }
+
+          this.setupChartOne()
+          console.log(Math.round(Math.abs(this.teamstats.teamavgcycle-this.mincycletime)/Math.abs(this.maxcycletime-this.mincycletime)*100))
           // this.teamstats = teamdata
         })
-
-      // console.log(teamdata)
 
       // teamdata.sort((a, b) => parseInt(a.teamnumber) - parseInt(b.teamnumber))
       
       // teamdata.forEach(team => console.log(team))
 
       // return teamdata
+    },
+
+    getallteamdata() {
+      var teams = []
+      this.csvData.forEach(item => {
+        teams.push(item.team)
+      })
+      
+
+      teams = [...new Set(teams)]
+
+      console.log(teams)
+
+      var cycletimes = []
+      var climbtimes = []
+      var pointdata = []
+
+
+
+      teams.forEach(team => {
+        var avgcycle = 0
+        var avgpoints = 0
+        var avgclimbtime = 0
+        var totalentries = 0
+        
+        this.csvData.filter(entry => entry.team == team).forEach((part) => {
+          avgcycle += (parseInt(part.cycletime) || 0)
+
+          avgpoints += (parseInt(part.taxipts) || 0) + (parseInt(part.lowget) || 0) + ((parseInt(part.highget) || 0) * 2) + ((parseInt(part.autoget) || 0) * 2)
+          switch (part.climbget){
+            case "Traversal Bar":
+              avgpoints += 15
+          
+              break;
+
+            case "High Bar":
+              avgpoints += 10
+         
+              break;
+
+            case "Mid Bar":
+              avgpoints += 6
+
+              break;
+
+            case "Low Bar":
+              avgpoints += 4
+        
+              break;
+            
+            default:
+              avgpoints += 0
+             
+              
+          }
+
+
+          avgclimbtime += (parseInt(part.timetoclimb) || 0)
+          totalentries ++
+        })
+        avgpoints /= totalentries
+        avgclimbtime /= totalentries
+        avgcycle /= totalentries
+
+        cycletimes.push(Math.round(avgcycle))
+        climbtimes.push(Math.round(avgclimbtime))
+        pointdata.push(Math.round(avgpoints))
+
+
+
+      })
+
+      //min to max
+      cycletimes = cycletimes.sort((a, b) => {return a - b})
+
+      climbtimes = climbtimes.sort((a, b) => {return a - b})
+
+      pointdata = pointdata.sort((a, b) => {return a - b})
+
+      console.log(pointdata.at(-1))
+
+      
+
+      this.maxcycletime = cycletimes.at(-1)
+      this.mincycletime = climbtimes[0]
+      this.maxclimbtime = climbtimes.at(-1)
+      this.minclimbtime = climbtimes[0]
+      this.maxpts = pointdata.at(-1)
+      this.minpts = pointdata[0]
+
+      console.log(this.maxcycletime - this.mincycletime)
+
+
+
     }
   },
 
@@ -280,7 +408,6 @@ export default {
 
   async mounted() {
 
-    
     axios.defaults.headers.common['X-TBA-Auth-Key'] = "fbkgBWLltUBDHgZLy1P2OAnKWX4VfSHjEJDYNH9Jz9vXqpjxkUJpxXKJg4HYImIn";
 
     // fetch("/../scouting.tsv").then(response => response.text()).then(data => {
@@ -318,8 +445,8 @@ export default {
 
     onValue(refer, (event) => {
       this.csvData = event.val()
-      console.log(this.csvData)
       this.getteamdata()
+      this.getallteamdata()
     })
     
 
@@ -327,7 +454,12 @@ export default {
     // axios.get("https://www.thebluealliance.com/api/v3/team/frc1885/simple").then(response => {console.log(response.data)})
 
     
-  }
+  },
+
+  created() {
+    
+  },
+
 
 }
 </script>
@@ -378,6 +510,21 @@ export default {
     font-size: 5vw;
   }
 
+  .graphcarousel > .carouseldiv {
+    scroll-snap-align: start;
+
+    height: 400px;
+    width: 100%;
+    flex-shrink: 0;
+    box-sizing: border-box;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+
+  }
+
   @media (hover: hover) and (pointer: fine) and (min-width: 700px){
     .maindatacont{
       height: 500px;
@@ -396,6 +543,15 @@ export default {
       grid-template-columns: auto auto auto auto;
       /* grid-template-columns: auto; */
     }
+    .graphcarousel > .carouseldiv {
+      scroll-snap-align: start;
+
+      height: 100%;
+      width: 100%;
+      flex-shrink: 0;
+      box-sizing: border-box;
+
+    }
   }
 
 
@@ -407,6 +563,7 @@ export default {
     height: 500px;
     /* background-color: orange; */
     flex: 0 0 50%;
+    
     box-sizing: border-box;
     padding: 10px;
     display: flex;
@@ -415,10 +572,24 @@ export default {
   }
   .graphcarousel{
     /* height: 100%; */
-    background-color: orange;
+    height: 500px;
+
     flex: 0 0 50%;
-    overflow: auto;
+    overflow-x: auto;
+    display: flex;
+    
+    flex-direction: row;
+    /* overscroll-behavior: contain; */
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
   }
+
+
+
+  
+
 
   .return {
     border: none;
