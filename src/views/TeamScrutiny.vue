@@ -707,6 +707,10 @@ export default {
 
 
   }
+/* 
+  .graphcarousel:hover{
+    cursor: pointer;
+  } */
 
   @media (hover: hover) and (pointer: fine) and (min-width: 700px){
     .maindatacont{
@@ -783,6 +787,11 @@ export default {
     font-family: "Roboto";
     font-size: 14pt;
     /* background-color: orange; */
+    
+  }
+
+  .return:hover{
+    cursor: pointer;
   }
 
   .topbar > span{
@@ -892,11 +901,11 @@ export default {
     padding: 0 0;
   }
 
-
+  
   ::-webkit-scrollbar {
     width: 10px;
   }
-
+  
   ::-webkit-scrollbar-track {
     background: #424242; 
   }
@@ -904,12 +913,14 @@ export default {
   ::-webkit-scrollbar-thumb {
     background: #888; 
   }
-
+  
   ::-webkit-scrollbar-thumb:hover {
     background: #555; 
+    
   }
+  
 
-
+  
   /* .datasectdata > table, td {
     border: solid red;
   } */
