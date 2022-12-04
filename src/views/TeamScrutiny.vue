@@ -787,6 +787,10 @@ export default {
     /* background-color: orange; */
   }
 
+  .return:hover{
+    cursor: pointer;
+  }
+
   .topbar > span{
     color: white;
     /* background-color: orange; */

@@ -272,6 +272,10 @@ export default {
     box-shadow: 0 0 5px 0px #000000;
   }
 
+  .datasect:hover{
+    cursor: pointer;
+  }
+
   .onelookperf {
     height: inherit;
     background-color: green;
