@@ -12,12 +12,12 @@
     <div class="content">
       <div class="maincontainer">
         <div id="comparatordrops">
-          <select @change="onChangeSelect($event, 1)">
+          <select @change="onChangeSelect($event, 1)" :key="keystart">
             <option value="0000">No team selected</option>
             <option v-for="i in teamentries" :value="i.teamnumber" :key="i.teamnumber">Team {{i.teamnumber}}: {{i.teamname}}</option>
           </select>
           <span>vs.</span>
-          <select @change="onChangeSelect($event, 2)">
+          <select @change="onChangeSelect($event, 2)" :key="keystart">
             <option value="0000">No team selected</option>
             <option v-for="i in teamentries" :value="i.teamnumber" :key="i.teamnumber">Team {{i.teamnumber}}: {{i.teamname}}</option>
           </select>
@@ -142,11 +142,19 @@ export default {
       chart2: undefined,
       chart3: undefined,
 
+      keystart: 0
+
     }
    
   },
 
   methods: {
+    getkey() {
+      this.keystart++
+      console.log(`this changed to ${this.keystart}`)
+      return this.keystart
+    },
+
     onChangeSelect(event, dropdownnumber){
     
       
@@ -399,6 +407,7 @@ export default {
       this.minpts = pointdata[0]
 
       this.climbopr = [climberavg.at(-1), climberavg[0]]
+      this.getkey()
       this.setupChartOne()
       this.setupChartTwo(this.defaultnames)
       this.setupChartThree(this.defaultnames)
